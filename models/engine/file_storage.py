@@ -3,6 +3,7 @@
 """
 import json
 import os
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -13,18 +14,30 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        str1 = self.__class__.__name__ + "." + obj.id
-        self.__objects[str1] = obj.to_dict()
+        if obj:
+            str1 = obj.__class__.__name__ + "." + obj.id
+            self.__objects[str1] = obj
 
     def save(self):
-        Newdict = json.dumps(self.__objects)
-        with open(self.__file_path, "w") as myFile:
-            myFile.write(Newdict)
+        """Newdict = json.dumps(FileStorage.__objects)
+        with open(FileStorage.__file_path, "w") as myFile:
+            myFile.write(Newdict)"""
+        ser_dict = {}
+        all_dict = FileStorage.__objects
+        with open(FileStorage.__file_path, "w") as f:
+            for value in all_dict.values():
+                key = "{}.{}".format(value.__class__.__name__, value.id)
+                ser_dict[key] = value.to_dict()
+            json.dump(ser_dict, f)
 
     def reload(self):
-        if not os.path.exists(self.__file_path):
-            pass
-        else:
-            with open(self.__file_path, "rt") as myFile:
-                self.__objects = json.loads(myFile.read())
-
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, "r") as f:
+                des_json = json.load(f)
+                for key, value in des_json.items():
+                    # Separate name_class from id and split the separator
+                    k = key.split('.')
+                    # search "__class__": "BaseModel"
+                    class_name = k[0]
+                    # set in __objects the key, value
+                    self.new(eval("{}".format(class_name))(**value))
