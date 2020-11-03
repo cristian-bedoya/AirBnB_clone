@@ -17,13 +17,13 @@ class BaseModel():
         format_1 = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) > 0:
             for key, value in kwargs.items():
-                if key is not "__class__":
-                    if key is "created_at" and type(value) is str:
-                        self.created_at = datetime.strptime(value, format_1)
-                    elif key is "updated_at" and type(value) is str:
-                        self.updated_at = datetime.strptime(value, format_1)
-                    else:
-                        setattr(self, key, value)
+                if key == "updated_at":
+                    value = datetime.strptime(value, format_1)
+                elif key == "created_at":
+                    value = datetime.strptime(value, format_1)
+                elif key == "__class__":
+                    continue
+                setattr(self, key, value)
         else:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
