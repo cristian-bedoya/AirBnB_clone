@@ -21,7 +21,7 @@ class FileStorage():
         """Object dict file to save in Json
         """
         if obj:
-            str1 = obj.__class__.__name__ + "." + obj.id
+            str1 = "{}.{}".format(obj.__class__.__name__, obj.id)
             self.__objects[str1] = obj
 
     def save(self):
@@ -42,9 +42,6 @@ class FileStorage():
             with open(self.__file_path, "r") as f:
                 des_json = json.load(f)
                 for key, value in des_json.items():
-                    # Separate name_class from id and split the separator
                     k = key.split('.')
-                    # search "__class__": "BaseModel"
                     class_name = k[0]
-                    # set in __objects the key, value
                     self.new(eval("{}".format(class_name))(**value))
