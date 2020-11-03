@@ -19,9 +19,6 @@ class FileStorage():
             self.__objects[str1] = obj
 
     def save(self):
-        """Newdict = json.dumps(FileStorage.__objects)
-        with open(FileStorage.__file_path, "w") as myFile:
-            myFile.write(Newdict)"""
         ser_dict = {}
         all_dict = FileStorage.__objects
         with open(FileStorage.__file_path, "w") as f:
