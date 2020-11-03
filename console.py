@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
                 print("{}".format("** instance id missing **"))
             else:
                 objects = storage.all()
-                key = list_line[0] + '.' + list_line[1]
+                key = "{}.{}".format(list_line[0], list_line[1])
                 if key not in objects:
                     print("{}".format("** no instance found **"))
                 else:
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
                 print("{}".format("** instance id missing **"))
             else:
                 objects = storage.all()
-                key = list_line[0] + '.' + list_line[1]
+                key = "{}.{}".format(list_line[0], list_line[1])
                 if key not in objects:
                     print("{}".format("** no instance found **"))
                 else:
@@ -98,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
                 for key in all_stored.keys():
                     Newlist.append(all_stored[key].__str__())
                 print(Newlist)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

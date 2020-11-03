@@ -9,16 +9,17 @@ import models
 class BaseModel():
     """ this is the Father class for all the project
     """
+    format_1 = "%Y-%m-%dT%H:%M:%S.%f"
+
     def __init__(self, *args, **kwargs):
         """ Main Contructor to contain the rules primary
         """
-        format_1 = "%Y-%m-%dT%H:%M:%S.%f"
         if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key == "updated_at":
-                    value = datetime.strptime(value, format_1)
+                    value = datetime.strptime(value, self.format_1)
                 elif key == "created_at":
-                    value = datetime.strptime(value, format_1)
+                    value = datetime.strptime(value, self.format_1)
                 elif key == "__class__":
                     continue
                 setattr(self, key, value)
@@ -45,9 +46,8 @@ class BaseModel():
     def to_dict(self):
         """Return a dict with attributes
         """
-        format_1 = "%Y-%m-%dT%H:%M:%S.%f"
         dict_1 = self.__dict__.copy()
         dict_1['__class__'] = self.__class__.__name__
-        dict_1['created_at'] = dict_1['created_at'].strftime(format_1)
-        dict_1['updated_at'] = dict_1['updated_at'].strftime(format_1)
+        dict_1['created_at'] = dict_1['created_at'].strftime(self.format_1)
+        dict_1['updated_at'] = dict_1['updated_at'].strftime(self.format_1)
         return dict_1
