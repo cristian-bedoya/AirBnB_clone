@@ -6,7 +6,7 @@ import os
 from models.base_model import BaseModel
 
 
-class FileStorage()
+class FileStorage():
     """ Class File Storage
     """
     __file_path = "file.json"
