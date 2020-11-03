@@ -48,6 +48,10 @@ class HBNBCommand(cmd.Cmd):
             print(New.id)
 
     def do_show(self, line):
+        """
+        Prints the string representation
+        of an instance based on the class name and id
+        """
         if line == "" or line is None:
             print("{}".format("** class name missing **"))
         else:
@@ -65,6 +69,7 @@ class HBNBCommand(cmd.Cmd):
                     print("{}".format(objects[key]))
 
     def do_destroy(self, line):
+        """ Deletes an instance based on the class name and id"""
         if line == "" or line is None:
             print("{}".format("** class name missing **"))
         else:
@@ -83,6 +88,8 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_all(self, line):
+        """ Prints all string representation of all instances
+         based or not on the class name """
         all_stored = storage.all()
         Newlist = []
         if line == "":
