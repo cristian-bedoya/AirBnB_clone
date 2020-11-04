@@ -89,18 +89,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """ Prints all string representation of all instances
-         based or not on the class name """
+        based or not on the class name """
         objects = storage.all()
-        if line != "":
-            list_line = line.split(' ')
-            if list_line[0] not in self.dict_classes:
-                print("{}".format("** class doesn't exist **"))
-            else:
-                list1 = [str(obj) for key, obj in objects.items()
-                         if type(obj).__name__ == list_line[0]]
-                print(list1)
-        else:
+        list_line = line.split(' ')
+        if not line:
             list1 = [str(obj) for key, obj in objects.items()]
+            print(list1)
+        elif list_line[0] not in self.dict_classes:
+            print("{}".format("** class doesn't exist **"))
+        else:
+            list1 = [str(obj) for key, obj in objects.items()
+                    if type(obj).__name__ == list_line[0]]
             print(list1)
 
     def do_update(self, line):
