@@ -14,7 +14,7 @@ class BaseModel():
     def __init__(self, *args, **kwargs):
         """ Main Contructor to contain the rules primary
         """
-        if len(kwargs) > 0:
+        """ if len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key == "updated_at":
                     value = datetime.strptime(value, self.format_1)
@@ -22,12 +22,25 @@ class BaseModel():
                     value = datetime.strptime(value, self.format_1)
                 elif key == "__class__":
                     continue
-                setattr(self, key, value)
+                setattr(self, key, value)  """
+        if kwargs:
+            if "__class__" in kwargs.keys():
+                kwargs.pop('__class__')
+            if "created_at" in kwargs.keys()\
+               and type(kwargs['created_at']) is str:
+                kwargs['created_at'] = datetime.\
+                                       strptime(kwargs['created_at'],
+                                                self.format_1)
+            if "updated_at" in kwargs.keys()\
+               and type(kwargs['updated_at']) is str:
+                kwargs['updated_at'] = datetime.\
+                                       strptime(kwargs['updated_at'],
+                                                self.format_1)
+            self.__dict__.update(kwargs)
         else:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
-            # if is a new instance
             models.storage.new(self)
 
     def __str__(self):
