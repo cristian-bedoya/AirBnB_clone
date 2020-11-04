@@ -90,20 +90,42 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """ Prints all string representation of all instances
          based or not on the class name """
-        all_stored = storage.all()
-        Newlist = []
-        if line == "":
-            for key in all_stored.keys():
-                Newlist.append(all_stored[key].__str__())
-            print(Newlist)
-        else:
+        objects = storage.all()
+        if line != "":
             list_line = line.split(' ')
             if list_line[0] not in self.dict_classes:
                 print("{}".format("** class doesn't exist **"))
             else:
-                for key in all_stored.keys():
-                    Newlist.append(all_stored[key].__str__())
-                print(Newlist)
+                list1 = [str(obj) for key, obj in objects.items()
+                         if type(obj).__name__ == list_line[0]]
+                print(list1)
+        else:
+            list1 = [str(obj) for key, obj in objects.items()]
+            print(list1)
+
+    def do_update(self, line):
+        """ Updates an instance based on the class name and
+         id by adding or updating attribute """
+        list_line = line.split()
+        objects = storage.all()
+        key = "{}.{}".format(list_line[0], list_line[1])
+        if len(list_line) == 0:
+            print("{}".format("** class name missing **"))
+        elif list_line[0] not in self.dict_classes:
+            print("{}".format("** class doesn't exist **"))
+        elif len(list_line) < 2:
+            print("{}".format("** instance id missing **"))
+        elif len(list_line) == 2:
+            if key not in objects:
+                print("{}".format("** no instance found **"))
+            else:
+                print("{}".format("** atribute name missing **"))
+        elif len(list_line) < 4:
+            print("{}".format("** value missing **"))
+        else:
+            dic_obj = objects[key].__dict__
+            dic_obj[list_line[2]] = list_line[3]
+            storage.save()
 
 
 if __name__ == '__main__':
