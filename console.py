@@ -101,7 +101,6 @@ class HBNBCommand(cmd.Cmd):
             if list_line[0] not in self.dict_classes:
                 print("{}".format("** class doesn't exist **"))
             else:
-                # Falta Organizarlo por Class Name
                 for key in all_stored.keys():
                     Newlist.append(all_stored[key].__str__())
                 print(Newlist)
