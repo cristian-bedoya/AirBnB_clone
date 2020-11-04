@@ -108,23 +108,31 @@ class HBNBCommand(cmd.Cmd):
          id by adding or updating attribute """
         list_line = line.split()
         objects = storage.all()
-        key = "{}.{}".format(list_line[0], list_line[1])
         if len(list_line) == 0:
             print("{}".format("** class name missing **"))
         elif list_line[0] not in self.dict_classes:
             print("{}".format("** class doesn't exist **"))
-        elif len(list_line) < 2:
+        elif len(list_line) == 1:
             print("{}".format("** instance id missing **"))
+        # key = "{}.{}".format(list_line[0], list_line[1])
+        elif ".".join(list_line[:2]) not in objects:
+            print("{}".format("** no instance found **"))
         elif len(list_line) == 2:
-            if key not in objects:
-                print("{}".format("** no instance found **"))
-            else:
-                print("{}".format("** atribute name missing **"))
+            print("{}".format("** atribute name missing **"))
         elif len(list_line) < 4:
             print("{}".format("** value missing **"))
         else:
+            key = "{}.{}".format(list_line[0], list_line[1])
+            attribute = list_line[2]
+            value = list_line[3].strip(' "')
+            if value.isdigit():
+                value = int(value)
+            elif '.' in value:
+                float1 = value.split('.')
+                if float1[0].isdigit() and float1[1].isdigit():
+                    value = float(value)
             dic_obj = objects[key].__dict__
-            dic_obj[list_line[2]] = list_line[3]
+            dic_obj[attribute] = value
             storage.save()
 
 
