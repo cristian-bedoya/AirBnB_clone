@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""[summary]
+"""Module to create new users
 """
 from models.base_model import BaseModel
 

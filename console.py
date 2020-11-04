@@ -4,6 +4,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import models
 from models import storage
 
@@ -12,7 +17,10 @@ class HBNBCommand(cmd.Cmd):
     """Class for command interpreter
     """
     prompt = '(hbnb) '
-    dict_classes = {"BaseModel": "BaseModel", "User": "User"}
+    dict_classes = {"BaseModel": "BaseModel", "User": "User",
+                    "State": "State", "City": "City",
+                    "Amenity": "Amenity", "Place": "Place",
+                    "Review": "Review"}
 
     def do_quit(self, line):
         """ Quit command to exit the program
@@ -44,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         elif line not in self.dict_classes:
             print("{}".format("** class doesn't exist **"))
         else:
-            New = BaseModel()
+            New = eval(line)()
             New.save()
             print(New.id)
 
