@@ -3,6 +3,7 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 from models import storage
 
@@ -11,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
     """Class for command interpreter
     """
     prompt = '(hbnb) '
-    dict_classes = {"BaseModel": "BaseModel"}
+    dict_classes = {"BaseModel": "BaseModel", "User": "User"}
 
     def do_quit(self, line):
         """ Quit command to exit the program
@@ -99,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             print("{}".format("** class doesn't exist **"))
         else:
             list1 = [str(obj) for key, obj in objects.items()
-                    if type(obj).__name__ == list_line[0]]
+                     if type(obj).__name__ == list_line[0]]
             print(list1)
 
     def do_update(self, line):
