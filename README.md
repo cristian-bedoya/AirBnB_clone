@@ -44,17 +44,17 @@ This project allow you create User, City and State and save with unique ID, Date
 **hierarchy**
 <pre>
 console.py
-models<br \>
-    base_model.py<br \>
-    amenity.py<br \>
-    city.py<br \>
-    state.py<br \>
-    place.py<br \>
-    review.py<br \>
-    user.py<br \>
+**models**
+    base_model.py
+    amenity.py
+    city.py
+    state.py
+    place.py
+    review.py
+    user.py
 
-engine<br \>
-    file_storage.py<br \>
+**engine**
+    file_storage.py
 
 </pre>
 
