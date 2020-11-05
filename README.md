@@ -42,17 +42,21 @@ This project allow you create User, City and State and save with unique ID, Date
 **Console.py** this is point enter command interpreter
 
 **hierarchy**
+<pre>
 console.py
-models\
-    base_model.py
-    amenity.py
-    city.py
-    state.py
-    place.py
-    review.py
-    user.py
-engine\
-    file_storage.py
+models<br \>
+    base_model.py<br \>
+    amenity.py<br \>
+    city.py<br \>
+    state.py<br \>
+    place.py<br \>
+    review.py<br \>
+    user.py<br \>
+
+engine<br \>
+    file_storage.py<br \>
+
+</pre>
 
 # How to clone
 
@@ -110,5 +114,5 @@ Create attribute and save it in Json file
 
 # Copyright
 
-> Holberton Students
+> &copy; Holberton Students
 
