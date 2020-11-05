@@ -1,9 +1,8 @@
 # AirBnB
 
-is an American vacation rental online marketplace company based in San Francisco-California, United States. Airbnb offers arrangement for lodging, primarily homestays, or tourism experiences. The company does not own any of the real estate listings, nor does it host events; it acts as a broker, receiving commissions from each booking.[more](https://en.wikipedia.org/wiki/Airbnb)
+is an American vacation rental online marketplace company based in San Francisco-California, United States. Airbnb offers arrangement for lodging, primarily homestays, or tourism experiences. The company does not own any of the real estate listings, nor does it host events; it acts as a broker, receiving commissions from each booking. [more](https://en.wikipedia.org/wiki/Airbnb)
 
 ## AirBnB Clone
-
 
 In the first phase of the AirBnB project we created a console to manipulate line commands
 
@@ -13,15 +12,15 @@ This is the first step towards building your first full web application: the Air
 
 ## what this command interpreter do?
 
-Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
-Update attributes of an object
+Create a new object (ex: a new User or a new Place)<br />
+Retrieve an object from a file, a database etc…<br />
+Do operations on objects (count, compute stats, etc…)<br />
+Update attributes of an object<br />
 Destroy an object
 
 ## Environment.
 
-All code was proof with pep8 style guide checker \(V1.7\).
+All code was proof with pep8 style guide checker (V1.7).
 Environment develpment used was:
 
 - Ubuntu 14.04 LTS
