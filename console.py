@@ -143,6 +143,21 @@ class HBNBCommand(cmd.Cmd):
             dic_obj[attribute] = value
             storage.save()
 
+    def default(self, line):
+        """Called on an input line when the command prefix is not recognized.
+        Args:
+            line (str): string with class name and method to execute.
+        """
+        methods = {
+            'all': self.do_all, 'show': self.do_show,
+            'destroy': self.do_destroy, 'update': self.do_update}
+        params = line[line.find('(')+1:line.find(')')].split(',')
+        cls_name, func = line[:line.find('(')].split('.')
+        params.insert(0, cls_name)
+        if cls_name.strip() in globals() and func.strip() in methods:
+            string = ' '.join([i.strip(' "') for i in params])
+            methods[func](string)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
